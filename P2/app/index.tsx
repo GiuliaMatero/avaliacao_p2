@@ -3,10 +3,29 @@ import { TheCatAPI } from "@thatapicompany/thecatapi"
 import { StyleSheet, Text, View, Pressable, FlatList, Image } from 'react-native';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
+type Gatos = {
+  id: string;
+  url: string;
+  limit?: number;
+}
 
 const { API_KEY } = process.env;
 
 export default function App() {
+  const theCatAPI = `https://api.thecatapi.com/v1/images/search?api_key=${API_KEY}&limit=5`
+  const [gatos, setGatos] = useState<Gatos[]>([]);
+
+  const gatinhosFofos = async () => {
+
+    const fotos = await fetch(theCatAPI);
+    const data = await fotos.json();
+    const gatos = data.slice(0, 5);
+
+    setGatos(gatos);
+
+    console.log(gatos);
+    console.log(theCatAPI)
+  }
   
 
   return (
