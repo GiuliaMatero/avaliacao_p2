@@ -7,13 +7,14 @@ type Gatos = {
   url: string;
   limit?: number;
 }
+
 const { API_KEY } = process.env;
 
 export default function App() {
   const theCatAPI = `https://api.thecatapi.com/v1/images/search?api_key=${API_KEY}&limit=5`
   const [gatos, setGatos] = useState<Gatos[]>([]);
 
-  const gerarGato = async () => {
+  const gatinhosFofos = async () => {
 
     const fotos = await fetch(theCatAPI);
     const data = await fotos.json();
@@ -28,12 +29,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>Gerador de fotos de gatos</Text>
+      <Text style={styles.titulo}>Carrossel de gatinhos fofos :)</Text>
       <Pressable
         style={styles.button}
         onPress={gerarGato}
       >
-        <Text>Gerar</Text>
+        <Text>Oi, gatinhos!</Text>
       </Pressable>
 
       <FlatList
